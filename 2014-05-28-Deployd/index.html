@@ -1,0 +1,142 @@
+<html>
+<head>
+	<link rel="stylesheet" href="css/presentation-style.css" />
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+<body class="impress-not-supported">
+<div id="impress">
+	<div class="step slide" data-x="0" data-y="0">
+        <h1>Sencha Users Group</h1>
+		<h2>Rapid prototyping with Architect and Deployd</h2>
+		<hr/>
+		A quick way to get applications into a useable state with a rich Node.js backend API, automated documentation, and Sencha Architect.
+		<br>
+		<span style="position:absolute;bottom:20;right:20">
+		<small>By: Josh Souza</small>
+		</span>
+    </div>
+	<div class="step slide" data-rotate-y="90">
+        <h2>Who am I?</h2>
+		Josh Souza - Senior Developer @ ViaWest Inc.
+		<ul>
+			<li>Working with ExtJS since version 2</li>
+			<li>Developer with ViaWest for 5 years</li>
+			<li>Technology enthusiast</li>
+		</ul>
+		<div style="float:left;text-align:center;padding:30px"><img src="images/Josh.png" width="200px"></div>
+		<div style="float:left;padding-top:60px;width:50%">
+			<ul>
+				<li>josh.souza@viawest.com</li>
+				<li>Sencha: ShadowZero3000</li>
+			</ul>
+		</div>
+    </div>
+	<div class="step slide" data-rotate-y="90">
+        <h2>The goal</h2>
+		<ul>
+			<li>Architect is useful for rapid prototyping</li>
+			<li>Building a real backend for Architect to talk to can be slow and delays prototyping</li>
+			<li>Setting 'data' in stores leads to a lot of rework, and doesn't allow for 'live' prototypes</li>
+			<li>When you are done with a prototype, it would be helpful to have clearly defined API endpoint needs and datastructures</li>
+			<li>Presenting a prototype should have that 'wow' factor</li>
+		</ul>
+
+    </div>
+	<div class="step slide" data-rotate-y="90">
+        <h2>Technology building blocks</h2>
+		<ul>
+			<li>Vagrant - Local environment provisioning</li>
+			<li>Sencha ExtJS (Though Touch would be just fine)</li>
+			<li>Sencha Architect - Visual prototyping</li>
+			<li>Deployd - Visual data modelling and API creation</li>
+			<li>Swagger - Visual API documentation</li>
+		</ul>
+
+    </div>
+	<div class="step slide" data-rotate-y="90">
+        <h2>How it works</h2>
+		<ul>
+			<li>Preconfigured Vagrant app: <a href="https://github.com/ShadowZero3000/deployd-vagrant-template">https://github.com/ShadowZero3000/deployd-vagrant-template</a></li>
+			<li>Simple initialization of application once set up</li>
+			<li>Creation of Architect project</li>
+			<li>Creation of Deployd data structures when needed</li>
+		</ul>
+    </div>
+	<div class="step slide" data-rotate-y="90">
+        <h2>Demonstration</h2>
+		<ul>
+			<li>For time's sake, my environment is already built</li>
+		</ul>
+    </div>
+	<div class="step slide" data-rotate-x="90" data-rotate-z="90">
+        <h2>Closing questions</h2>
+		<ul>
+			<li>Presentation: impress.js & HTML5</li>
+			<li>Email: josh.souza@viawest.com</li>
+			<li>Comments/questions?</li>
+		</ul>
+    </div>
+</div>
+<script>
+	//This code takes care of basic layout of a slide deck
+		var slides=document.getElementsByClassName('step');
+		var length = slides.length,
+			element = null,
+			gap=1200,
+			xpos=0,
+			xgap=gap,
+			ypos=0,
+			ygap=0,
+			zpos=0,
+			zgap=0,
+			lastXRot=0,
+			lastYRot=0,
+			lastZRot=0;
+
+		for (var i = 0; i < length; i++) {
+			element = slides[i];
+			if(element.getAttribute("data-rotate-x")||element.getAttribute("data-rotate-y")||element.getAttribute("data-rotate-z")){
+				xgap=0;
+				ygap=0;
+				zgap=0;
+			}
+			if(element.getAttribute("data-rotate-x")){
+				rad=parseInt(element.getAttribute("data-rotate-x"));
+				zgap=zgap-gap*Math.round(Math.cos(rad*(Math.PI/180)));
+				ygap=ygap+gap*Math.round(Math.sin(rad*(Math.PI/180)));
+			};
+			if(element.getAttribute("data-rotate-y")){
+				rad=parseInt(element.getAttribute("data-rotate-y"));
+				xgap=xgap+gap*Math.round(Math.cos(rad*(Math.PI/180)));
+				zgap=zgap-gap*Math.round(Math.sin(rad*(Math.PI/180)));
+			};
+			if(element.getAttribute("data-rotate-z")){
+				rad=parseInt(element.getAttribute("data-rotate-z"));
+				xgap=xgap+gap*Math.round(Math.cos(rad*(Math.PI/180)));
+				ygap=ygap+gap*Math.round(Math.sin(rad*(Math.PI/180)));
+			};
+
+			if(!element.getAttribute('data-x')){
+				xpos+=xgap;
+				element.setAttribute('data-x',xpos);
+			}else{
+				xpos=parseInt(element.getAttribute('data-x'));
+			}
+			if(!element.getAttribute('data-y')){
+				ypos+=ygap;
+				element.setAttribute('data-y',ypos);
+			}else{
+				ypos=parseInt(element.getAttribute('data-y'));
+			}
+			if(!element.getAttribute('data-z')){
+				zpos+=zgap;
+				element.setAttribute('data-z',zpos);
+			}else{
+				zpos=parseInt(element.getAttribute('data-z'));
+			}
+		}
+	</script>
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>
